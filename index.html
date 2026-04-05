@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Gull Motors | Premium Car Dealer – Real Deals, Simulated Payment</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .navbar {
+      background: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+    .logo i:first-child { color: #e67e22; }
+    .logo span:first-of-type { background: linear-gradient(135deg, #0f4c5f, #1f7a8c); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .logo span:last-of-type { color: #e67e22; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+    }
+    .nav-links a:hover { color: #e67e22; }
+    .btn-outline {
+      border: 1.5px solid #e67e22;
+      padding: 8px 18px;
+      border-radius: 40px;
+      background: transparent;
+      color: #e67e22;
+      font-weight: 600;
+    }
+    .btn-outline:hover {
+      background: #e67e22;
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(120deg, #eef2ff 0%, #ffffff 100%);
+      padding: 3rem 0;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-content { flex: 1; }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .hero-content h1 span { color: #e67e22; }
+    .hero-badge {
+      background: #e6f7f0;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f7a8c;
+      margin-bottom: 1rem;
+    }
+    .btn-primary {
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 14px rgba(230,126,34,0.25);
+    }
+    .btn-primary:hover { background: #cf711f; transform: translateY(-2px); }
+    .hero-image { flex: 1; text-align: center; }
+    .hero-image img { max-width: 100%; border-radius: 28px; box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2); }
+
+    /* Filters */
+    .filter-bar {
+      background: white;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2rem 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid #e2e8f0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 48px;
+      padding: 0.4rem 1rem;
+      gap: 8px;
+      flex: 2;
+      min-width: 200px;
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      padding: 10px 0;
+      width: 100%;
+      outline: none;
+    }
+    .filter-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .filter-chip {
+      background: #f1f5f9;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .filter-chip.active, .filter-chip:hover { background: #e67e22; color: white; }
+
+    /* Car Grid */
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; color: #0b3b5f; }
+    .section-sub { color: #475569; margin-bottom: 2rem; border-left: 4px solid #e67e22; padding-left: 1rem; }
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .car-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.25s;
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.08);
+      border: 1px solid #edf2f7;
+    }
+    .car-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15); }
+    .car-img { width: 100%; height: 200px; object-fit: cover; }
+    .car-info { padding: 1.2rem; }
+    .car-name { font-size: 1.4rem; font-weight: 800; display: flex; justify-content: space-between; }
+    .badge-discount {
+      background: #e67e22;
+      color: white;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 30px;
+      font-weight: 700;
+    }
+    .car-price-original { text-decoration: line-through; color: #94a3b8; font-size: 0.9rem; margin-right: 8px; }
+    .car-price-sale { font-size: 1.6rem; font-weight: 800; color: #e67e22; }
+    .car-details {
+      display: flex;
+      justify-content: space-between;
+      color: #475569;
+      font-size: 0.85rem;
+      margin: 0.8rem 0;
+      border-top: 1px solid #eef2f6;
+      padding-top: 0.8rem;
+    }
+    .btn-buy {
+      width: 100%;
+      background: #0f172a;
+      border: none;
+      padding: 12px;
+      border-radius: 40px;
+      font-weight: 700;
+      color: white;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-buy:hover { background: #e67e22; }
+    .financing-note { font-size: 0.75rem; color: #2c7a47; margin-top: 8px; text-align: center; }
+
+    /* Modal (Fake Payment) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 32px;
+      padding: 2rem;
+      position: relative;
+      animation: fadeInUp 0.3s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .close-modal {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .payment-summary { background: #f8fafc; padding: 1rem; border-radius: 20px; margin: 1rem 0; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 28px;
+      font-family: inherit;
+    }
+    .btn-pay {
+      background: #10b981;
+      width: 100%;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 800;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .payment-status { margin-top: 1rem; text-align: center; font-weight: 600; }
+
+    /* Contact */
+    .contact-section {
+      background: white;
+      border-radius: 2rem;
+      margin: 3rem 0;
+      padding: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    }
+    .contact-flex { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .contact-info { flex: 1; }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin: 1rem 0; }
+    .contact-detail i { color: #e67e22; width: 28px; }
+    footer {
+      background: #0b1c2c;
+      color: #cbd5e1;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2rem; }
+      .filter-bar { flex-direction: column; border-radius: 32px; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-wrapper">
+    <div class="logo">
+      <i class="fas fa-car-side"></i>
+      <span>GULL</span><span>MOTORS</span>
+      <i class="fas fa-dove" style="font-size:1.4rem; color:#1f7a8c;"></i>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="btn-outline"><i class="fas fa-phone-alt"></i> (555) 789-GULL</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-tag"></i> Limited Spring Event: Up to $4,500 off + 0.9% APR</div>
+        <h1>Drive smarter with <span>Gull Motors</span><br>Real deals, real quality.</h1>
+        <p>Certified pre-owned & new arrivals. Every vehicle includes a 7-day return guarantee and free 2-year maintenance.</p>
+        <button class="btn-primary" onclick="document.getElementById('inventory').scrollIntoView({behavior:'smooth'})">Explore deals <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7fa0ac7?w=600&h=400&fit=crop" alt="Gull showroom">
+      </div>
+    </div>
+  </section>
+
+  <!-- Inventory Section -->
+  <div class="container" id="inventory">
+    <h2 class="section-title">Current inventory</h2>
+    <p class="section-sub">Each vehicle includes free CARFAX report, full inspection & financing options</p>
+
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by model, brand...">
+      </div>
+      <div class="filter-btns">
+        <button class="filter-chip active" data-type="all">All</button>
+        <button class="filter-chip" data-type="SUV">SUV</button>
+        <button class="filter-chip" data-type="Sedan">Sedan</button>
+        <button class="filter-chip" data-type="Electric">Electric</button>
+        <button class="filter-chip" data-type="Truck">Truck</button>
+        <button id="resetFilters" style="background:#e2e8f0;">Reset</button>
+      </div>
+    </div>
+    <div id="carsContainer" class="cars-grid"></div>
+  </div>
+
+  <!-- Contact & Financing -->
+  <div class="container" id="contact">
+    <div class="contact-section">
+      <div class="contact-flex">
+        <div class="contact-info">
+          <h3><i class="fas fa-building"></i> Gull Auto Hub</h3>
+          <p>Visit our flagship showroom or request a virtual tour. We offer test drives, trade-in appraisal, and same-day financing.</p>
+          <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> 770 Gull Avenue, Los Angeles, CA 90017</div>
+          <div class="contact-detail"><i class="fas fa-phone-alt"></i> +1 (555) 789-4855</div>
+          <div class="contact-detail"><i class="fas fa-envelope"></i> deals@gullmotors.com</div>
+          <div class="contact-detail"><i class="far fa-clock"></i> Mon-Sat 9AM – 8PM | Sunday 10AM–5PM</div>
+          <div class="contact-detail"><i class="fas fa-percent"></i> Financing as low as 0.9% APR for qualified buyers</div>
+        </div>
+        <div class="contact-info">
+          <h4>Get instant trade-in estimate</h4>
+          <form id="tradeForm">
+            <div class="form-group"><input type="text" placeholder="Your car model & year" id="tradeCar" required></div>
+            <div class="form-group"><input type="text" placeholder="Mileage" id="tradeMileage"></div>
+            <button type="submit" class="btn-primary" style="background:#2c7a47;">Get offer <i class="fas fa-dollar-sign"></i></button>
+          </form>
+          <p id="tradeFeedback" style="margin-top:12px; font-size:0.85rem;"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+    <p>© 2025 Gull Motors — Real prices, transparent deals. Simulated payment demo.</p>
+    <div><i class="fab fa-instagram"></i> <i class="fab fa-facebook"></i> <i class="fab fa-x-twitter"></i> <i class="fab fa-youtube"></i></div>
+  </div>
+</footer>
+
+<!-- Modal for fake payment -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3><i class="fas fa-credit-card"></i> Complete your purchase (demo)</h3>
+    <div id="modalCarInfo" class="payment-summary"></div>
+    <form id="fakePaymentForm">
+      <div class="form-group"><input type="text" placeholder="Full name on card" required id="cardName"></div>
+      <div class="form-group"><input type="text" placeholder="Card number (demo: 4242 4242 4242 4242)" maxlength="19" id="cardNumber"></div>
+      <div class="form-group" style="display: flex; gap: 12px;">
+        <input type="text" placeholder="MM/YY" id="cardExpiry">
+        <input type="text" placeholder="CVV" id="cardCvv">
+      </div>
+      <div class="form-group"><input type="email" placeholder="Email for receipt" id="buyerEmail" required></div>
+      <button type="submit" class="btn-pay"><i class="fas fa-lock"></i> Pay securely (simulated)</button>
+      <p class="payment-status" id="paymentStatusMsg"></p>
+      <p style="font-size: 0.7rem; text-align: center; margin-top: 12px;">⚠️ This is a fake payment simulation — no real charge.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ---------- REALISTIC CAR DATABASE with images, discounts, financing offers ----------
+  const carsData = [
+    { id: 1, name: "Tesla Model 3 Long Range", year: 2024, mileage: 4120, price: 47990, originalPrice: 51990, discount: "$4,000 off", type: "Electric", fuel: "Electric", transmission: "Auto", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=500&h=280&fit=crop", financing: "0.9% APR for 60 mo" },
+    { id: 2, name: "BMW X5 xDrive40i", year: 2023, mileage: 18450, price: 58900, originalPrice: 64900, discount: "$6,000 off", type: "SUV", fuel: "Hybrid", transmission: "8-speed", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=280&fit=crop", financing: "1.9% APR" },
+    { id: 3, name: "Mercedes-Benz E-Class", year: 2024, mileage: 6230, price: 54990, originalPrice: 58990, discount: "$4,000 off", type: "Sedan", fuel: "Petrol", transmission: "9G-TRONIC", image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=500&h=280&fit=crop", financing: "0% APR for 36 mo" },
+    { id: 4, name: "Porsche 911 Carrera S", year: 2023, mileage: 9700, price: 128500, originalPrice: 135000, discount: "$6,500 off", type: "Sports", fuel: "Petrol", transmission: "PDK", image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=500&h=280&fit=crop", financing: "Special lease" },
+    { id: 5, name: "Ford F-150 Lightning", year: 2024, mileage: 3100, price: 62990, originalPrice: 67990, discount: "$5,000 EV credit", type: "Truck", fuel: "Electric", transmission: "Auto", image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=500&h=280&fit=crop", financing: "0.9% APR" },
+    { id: 6, name: "Audi Q8 e-tron", year: 2024, mileage: 5220, price: 72900, originalPrice: 77900, discount: "$5,000 off", type: "SUV", fuel: "Electric", transmission: "Auto", image: "https://images.unsplash.com/photo-1606664512396-3f31b618bff1?w=500&h=280&fit=crop", financing: "1.49% APR" },
+    { id: 7, name: "Honda Accord Touring", year: 2023, mileage: 14320, price: 31990, originalPrice: 34990, discount: "$3,000 off", type: "Sedan", fuel: "Hybrid", transmission: "e-CVT", image: "https://images.unsplash.com/photo-1621252179027-94459d278661?w=500&h=280&fit=crop", financing: "0% APR for 48 mo" },
+    { id: 8, name: "Chevrolet Corvette Stingray", year: 2024, mileage: 1850, price: 74900, originalPrice: 79900, discount: "$5,000 off", type: "Sports", fuel: "Petrol", transmission: "8-speed DCT", image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&h=280&fit=crop", financing: "2.9% APR" },
+    { id: 9, name: "Toyota RAV4 Prime", year: 2024, mileage: 8210, price: 40990, originalPrice: 43990, discount: "$3,000 rebate", type: "SUV", fuel: "Plug-in Hybrid", transmission: "CVT", image: "https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=500&h=280&fit=crop", financing: "0.9% APR" }
+  ];
+
+  let activeFilter = "all";
+  let searchTerm = "";
+  let selectedCarForPayment = null;
+
+  // Render car grid
+  function renderCars() {
+    const container = document.getElementById("carsContainer");
+    let filtered = carsData.filter(car => {
+      if (activeFilter !== "all" && car.type !== activeFilter) return false;
+      if (searchTerm.trim() !== "") {
+        const term = searchTerm.toLowerCase();
+        return car.name.toLowerCase().includes(term) || car.type.toLowerCase().includes(term);
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<div class="no-results" style="text-align:center; padding:3rem;">No cars match. Try resetting filters.</div>`;
+      return;
+    }
+
+    container.innerHTML = filtered.map(car => `
+      <div class="car-card">
+        <img class="car-img" src="${car.image}" alt="${car.name}" onerror="this.src='https://placehold.co/500x280?text=Gull+Auto'">
+        <div class="car-info">
+          <div class="car-name">
+            ${car.name} <span class="badge-discount">${car.discount}</span>
+          </div>
+          <div>
+            <span class="car-price-original">$${car.originalPrice.toLocaleString()}</span>
+            <span class="car-price-sale">$${car.price.toLocaleString()}</span>
+          </div>
+          <div class="car-details">
+            <span><i class="fas fa-calendar"></i> ${car.year}</span>
+            <span><i class="fas fa-tachometer-alt"></i> ${car.mileage.toLocaleString()} mi</span>
+            <span><i class="fas fa-gas-pump"></i> ${car.fuel}</span>
+          </div>
+          <div class="car-details">
+            <span><i class="fas fa-cogs"></i> ${car.transmission}</span>
+            <span><i class="fas fa-charging-station"></i> ${car.type}</span>
+          </div>
+          <div class="financing-note"><i class="fas fa-percent"></i> ${car.financing} available</div>
+          <button class="btn-buy" data-id="${car.id}"><i class="fas fa-shopping-cart"></i> Buy now / Reserve</button>
+        </div>
+      </div>
+    `).join('');
+
+    // attach event listeners to buy buttons
+    document.querySelectorAll('.btn-buy').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const carId = parseInt(btn.getAttribute('data-id'));
+        const car = carsData.find(c => c.id === carId);
+        if (car) openPaymentModal(car);
+      });
+    });
+  }
+
+  // Modal with fake payment simulation
+  function openPaymentModal(car) {
+    selectedCarForPayment = car;
+    const modal = document.getElementById('paymentModal');
+    const modalInfo = document.getElementById('modalCarInfo');
+    modalInfo.innerHTML = `
+      <strong>${car.name} (${car.year})</strong><br>
+      Sale price: <span style="font-size:1.4rem; color:#e67e22;">$${car.price.toLocaleString()}</span><br>
+      Original MSRP: $${car.originalPrice.toLocaleString()} | You save ${car.discount}<br>
+      <small>Includes 2-year maintenance + 7-day return</small>
+    `;
+    modal.style.display = 'flex';
+    // reset form & status
+    document.getElementById('fakePaymentForm').reset();
+    document.getElementById('paymentStatusMsg').innerHTML = '';
+  }
+
+  // Fake payment processor
+  function simulatePayment(event) {
+    event.preventDefault();
+    const cardName = document.getElementById('cardName').val
