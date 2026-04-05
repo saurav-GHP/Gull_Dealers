@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Gull Motors | Premium Car Dealer</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafcff;
+      color: #111827;
+      scroll-behavior: smooth;
+    }
+
+    /* custom container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / navigation */
+    .navbar {
+      background: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #0b3b5f;
+    }
+
+    .logo i {
+      font-size: 2rem;
+      color: #e67e22;
+      transform: rotate(-5deg);
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, #0f4c5f, #1f7a8c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #e67e22;
+    }
+
+    .nav-links .btn-outline {
+      border: 1.5px solid #e67e22;
+      padding: 8px 18px;
+      border-radius: 40px;
+      background: transparent;
+      color: #e67e22;
+    }
+
+    .nav-links .btn-outline:hover {
+      background: #e67e22;
+      color: white;
+      border-color: #e67e22;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(135deg, #eef2f9 0%, #ffffff 100%);
+      padding: 3rem 0 3rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(130deg, #134b5e, #2c7a47);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #334155;
+      margin: 1.5rem 0;
+      max-width: 90%;
+    }
+
+    .hero-badge {
+      background: #eef2ff;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f7a8c;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 14px rgba(230,126,34,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #cf711f;
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #0b3b5f;
+    }
+    .section-sub {
+      color: #4b5563;
+      margin-bottom: 2.5rem;
+      border-left: 4px solid #e67e22;
+      padding-left: 1rem;
+    }
+
+    /* filter bar */
+    .filter-bar {
+      background: white;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 12px -8px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 48px;
+      padding: 0.4rem 1rem;
+      gap: 8px;
+      flex: 2;
+      min-width: 200px;
+    }
+    .search-box i {
+      color: #94a3b8;
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      padding: 10px 0;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+    }
+    .filter-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-chip {
+      background: #f1f5f9;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.85rem;
+    }
+    .filter-chip.active, .filter-chip:hover {
+      background: #e67e22;
+      color: white;
+    }
+    .reset-btn {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* car grid */
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+    .car-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
+      border: 1px solid #edf2f7;
+    }
+    .car-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+      border-color: #ffe0c0;
+    }
+    .car-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .car-info {
+      padding: 1.2rem 1.2rem 1.5rem;
+    }
+    .car-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+    .car-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #e67e22;
+      margin: 0.5rem 0;
+    }
+    .car-details {
+      display: flex;
+      justify-content: space-between;
+      color: #475569;
+      font-size: 0.85rem;
+      margin: 0.8rem 0;
+      border-top: 1px solid #eef2f6;
+      padding-top: 0.8rem;
+    }
+    .car-details span i {
+      margin-right: 5px;
+      width: 18px;
+    }
+    .btn-detail {
+      width: 100%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10px;
+      border-radius: 40px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-detail:hover {
+      background: #e67e22;
+      color: white;
+      border-color: #e67e22;
+    }
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      background: #f9fafb;
+      border-radius: 2rem;
+    }
+
+    /* contact & about */
+    .contact-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      margin: 3rem 0;
+      padding: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03);
+      border: 1px solid #eef2ff;
+    }
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .contact-info {
+      flex: 1;
+    }
+    .contact-info h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .contact-detail i {
+      width: 32px;
+      color: #e67e22;
+      font-size: 1.3rem;
+    }
+    .contact-form {
+      flex: 1;
+      background: #fefcf8;
+      padding: 1.5rem;
+      border-radius: 24px;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 32px;
+      font-family: inherit;
+      outline: none;
+    }
+    .form-group textarea {
+      border-radius: 24px;
+      resize: vertical;
+    }
+    footer {
+      background: #0b1c2c;
+      color: #cbd5e1;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .social i {
+      font-size: 1.4rem;
+      margin: 0 8px;
+      color: #e67e22;
+      transition: 0.2s;
+    }
+    @media (max-width: 768px) {
+      .nav-wrapper {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 32px;
+        gap: 12px;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-wrapper">
+    <div class="logo">
+      <i class="fas fa-car-side"></i>
+      <span>GULL<span style="color:#e67e22;">MOTORS</span></span>
+      <i class="fas fa-dove" style="font-size:1.5rem; color:#1f7a8c;"></i>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="btn-outline"><i class="fas fa-phone-alt"></i> +1 (800) 234-GULL</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-feather-alt"></i> Soaring since 2012</div>
+        <h1>Drive the extraordinary <br> with <span style="color:#e67e22;">Gull Motors</span></h1>
+        <p>Premium new & pre-owned vehicles, certified quality and unmatched service. Experience the gull standard — freedom on the road.</p>
+        <button class="btn-primary" onclick="document.getElementById('inventory').scrollIntoView({behavior:'smooth'})">Explore Cars <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop" alt="Luxury car showroom" style="border-radius: 28px;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Inventory Section with Filter -->
+  <div class="container" id="inventory" style="margin-top: 3rem;">
+    <div>
+      <h2 class="section-title">Our premium collection</h2>
+      <p class="section-sub">Find your next ride — each vehicle inspected with Gull excellence</p>
+    </div>
+
+    <!-- Filter & search -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by model, brand...">
+      </div>
+      <div class="filter-btns">
+        <button class="filter-chip active" data-type="all">All</button>
+        <button class="filter-chip" data-type="SUV">SUV</button>
+        <button class="filter-chip" data-type="Sedan">Sedan</button>
+        <button class="filter-chip" data-type="Electric">Electric</button>
+        <button class="filter-chip" data-type="Sports">Sports</button>
+        <button class="reset-btn" id="resetFilters"><i class="fas fa-undo-alt"></i> Reset</button>
+      </div>
+    </div>
+
+    <div id="carsContainer" class="cars-grid">
+      <!-- dynamic car cards injected here -->
+    </div>
+  </div>
+
+  <!-- Contact + About Section -->
+  <div class="container" id="contact">
+    <div class="contact-section">
+      <div class="contact-flex">
+        <div class="contact-info">
+          <h3><i class="fas fa-store"></i> Gull Auto Hub</h3>
+          <p>Visit our flagship showroom or reach out — we’re here to help you drive home your dream car.</p>
+          <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> 420 Ocean Drive, Gull Bay, CA 90210</div>
+          <div class="contact-detail"><i class="fas fa-phone-alt"></i> +1 (800) 485- GULL (4855)</div>
+          <div class="contact-detail"><i class="fas fa-envelope"></i> hello@gullmotors.com</div>
+          <div class="contact-detail"><i class="far fa-clock"></i> Mon-Sat: 9AM – 7PM | Sun: Closed</div>
+        </div>
+        <div class="contact-form">
+          <h4 style="margin-bottom:1rem;">Request a test drive</h4>
+          <form id="testDriveForm">
+            <div class="form-group"><input type="text" placeholder="Full name" id="fullName" required></div>
+            <div class="form-group"><input type="email" placeholder="Email address" id="emailContact" required></div>
+            <div class="form-group"><textarea rows="3" placeholder="Which car caught your eye?"></textarea></div>
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Send inquiry <i class="fas fa-paper-plane"></i></button>
+          </form>
+          <p id="formFeedback" style="margin-top: 12px; font-size:0.85rem; color:#2b6e3b;"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <p>© 2025 Gull Motors — Premium Car Dealer. Soaring beyond expectations.</p>
+    <div class="social">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-x-twitter"></i>
+      <i class="fab fa-youtube"></i>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ----- CAR DATABASE (Gull Motors Inventory) -----
+  const carsData = [
+    { id: 1, name: "Tesla Model 3", price: 45999, year: 2024, mileage: 3200, type: "Electric", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=250&fit=crop", fuel: "Electric", transmission: "Auto" },
+    { id: 2, name: "BMW X5", price: 62900, year: 2023, mileage: 12450, type: "SUV", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=250&fit=crop", fuel: "Hybrid", transmission: "Auto" },
+    { id: 3, name: "Mercedes-Benz C-Class", price: 47990, year: 2024, mileage: 5800, type: "Sedan", image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400&h=250&fit=crop", fuel: "Petrol", transmission: "Auto" },
+    { id: 4, name: "Porsche 911 Carrera", price: 118500, year: 2022, mileage: 18700, type: "Sports", image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=400&h=250&fit=crop", fuel: "Petrol", transmission: "Auto" },
+    { id: 5, name: "Ford Mustang Mach-E", price: 52990, year: 2023, mileage: 9210, type: "Electric", image: "https://images.unsplash.com/photo-1631295868223-63228b10f6e4?w=400&h=250&fit=crop", fuel: "Electric", transmission: "Auto" },
+    { id: 6, name: "Audi Q7", price: 68990, year: 2024, mileage: 4320, type: "SUV", image: "https://images.unsplash.com/photo-1606664512396-3f31b618bff1?w=400&h=250&fit=crop", fuel: "Diesel", transmission: "Auto" },
+    { id: 7, name: "Honda Accord Hybrid", price: 33990, year: 2023, mileage: 15300, type: "Sedan", image: "https://images.unsplash.com/photo-1621252179027-94459d278661?w=400&h=250&fit=crop", fuel: "Hybrid", transmission: "CVT" },
+    { id: 8, name: "Chevrolet Corvette Stingray", price: 79900, year: 2024, mileage: 2100, type: "Sports", image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=250&fit=crop", fuel: "Petrol", transmission: "Auto" }
+  ];
+
+  let activeFilter = "all";
+  let searchTerm = "";
+
+  // Helper to render cards based on filters
+  function renderCars() {
+    const container = document.getElementById("carsContainer");
+    if (!container) return;
+    
+    let filtered = carsData.filter(car => {
+      // Type filter
+      if (activeFilter !== "all" && car.type !== activeFilter) return false;
+      // Search filter (name, type)
+      if (searchTerm.trim() !== "") {
+        const term = searchTerm.toLowerCase();
+        return car.name.toLowerCase().includes(term) || car.type.toLowerCase().includes(term);
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<div class="no-results"><i class="fas fa-car-side" style="font-size:2.5rem; opacity:0.5;"></i><h3>No cars match your criteria</h3><p>Try resetting filters or explore different models.</p><button class="btn-primary" id="quickResetBtn" style="margin-top:1rem;">Show all vehicles</button></div>`;
+      const resetQuick = document.getElementById("quickResetBtn");
+      if (resetQuick) resetQuick.addEventListener("click", () => {
+        activeFilter = "all";
+        searchTerm = "";
+        document.getElementById("searchInput").value = "";
+        updateActiveFilterUI();
+        renderCars();
+      });
+      return;
+    }
+
+    let cardsHtml = "";
+    filtered.forEach(car => {
+      cardsHtml += `
+        <div class="car-card">
+          <img class="car-img" src="${car.image}" alt="${car.name}" loading="lazy" onerror="this.src='https://placehold.co/400x250?text=Gull+Auto'">
+          <div class="car-info">
+            <div class="car-name">${car.name}</div>
+            <div class="car-price">$${car.price.toLocaleString()}</div>
+            <div class="car-details">
+              <span><i class="fas fa-calendar-alt"></i> ${car.year}</span>
+              <span><i class="fas fa-tachometer-alt"></i> ${car.mileage.toLocaleString()} mi</span>
+              <span><i class="fas fa-gas-pump"></i> ${car.fuel}</span>
+            </div>
+            <div class="car-details" style="border-top: none; padding-top:0;">
+              <span><i class="fas fa-car"></i> ${car.type}</span>
+              <span><i class="fas fa-cogs"></i> ${car.transmission}</span>
+            </div>
+            <button class="btn-detail" data-car="${car.name}"><i class="fas fa-info-circle"></i> Request details</button>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = cardsHtml;
+
+    // attach event listeners to detail buttons
+    document.querySelectorAll('.btn-detail').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const carName = btn.getAttribute('data-car');
+        alert(`✨ Thank you for your interest in the ${carName}!\nA Gull Motors specialist will reach out shortly.`);
+      });
+    });
+  }
+
+  function updateActiveFilterUI() {
+    document.querySelectorAll('.filter-chip').forEach(btn => {
+      if (btn.getAttribute('data-type') === activeFilter) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  // event listeners for filters
+  function initFilters() {
+    const filterBtns = document.querySelectorAll('.filter-chip');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const filterType = btn.getAttribute('data-type');
+        activeFilter = filterType;
+        updateActiveFilterUI();
+        renderCars();
+      });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchTerm = e.target.value;
+        renderCars();
+      });
+    }
+
+    const resetBtn = document.getElementById('resetFilters');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        activeFilter = "all";
+        searchTerm = "";
+        if (searchInput) searchInput.value = "";
+        updateActiveFilterUI();
+        renderCars();
+      });
+    }
+  }
+
+  // Contact form handler with smooth feedback
+  function initContactForm() {
+    const form = document.getElementById('testDriveForm');
+    const feedback = document.getElementById('formFeedback');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('fullName')?.value.trim();
+        const em
